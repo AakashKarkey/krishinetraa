@@ -96,7 +96,7 @@ def read_file_as_image(data) -> np.ndarray:
     try:
         image = Image.open(BytesIO(data)).convert("RGB")
         image = image.resize((224, 224))  # Resize to model's input
-        image = np.array(image) / 255.0   # Normalize pixel values
+        image = np.array(image)
         return image
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid image: {e}")

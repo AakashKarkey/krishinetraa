@@ -88,7 +88,7 @@ def read_file_as_image(data) -> np.ndarray:
     try:
         image = Image.open(BytesIO(data)).convert("RGB")
         image = image.resize((IMG_SIZE, IMG_SIZE))
-        image = np.array(image) / 255.0
+        image = np.array(image)
         return image
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid image: {e}")
