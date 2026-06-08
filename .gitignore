@@ -51,6 +51,10 @@ next-env.d.ts
 backend/.venv/
 venv/
 
+# ML Models (too large for GitHub)
+backend/save_models/
+*.h5
+
 # Node
 node_modules/
 
