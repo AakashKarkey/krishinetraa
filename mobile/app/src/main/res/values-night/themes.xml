@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://android.com/tools">
+    <style name="Base.Theme.KrishiNetraMobile" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/green_500</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimaryContainer">@color/green_800</item>
+        <item name="colorOnPrimaryContainer">@color/green_200</item>
+        <item name="colorSecondary">@color/green_500</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondaryContainer">@color/green_950</item>
+        <item name="colorOnSecondaryContainer">@color/green_200</item>
+        <item name="colorTertiary">@color/teal_500</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorOnBackground">@color/gray_200</item>
+        <item name="colorSurface">#FF1C1C1E</item>
+        <item name="colorOnSurface">@color/gray_200</item>
+        <item name="colorError">@color/red_500</item>
+        <item name="colorOnError">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">#FF1C1C1E</item>
+    </style>
+</resources>
