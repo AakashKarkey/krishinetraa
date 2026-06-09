@@ -11,8 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.ace.krishinetra_mobile.databinding.FragmentSignInBinding
+import com.ace.krishinetra_mobile.utils.ToastType
+import com.ace.krishinetra_mobile.utils.Toaster
 import com.ace.krishinetra_mobile.viewmodel.AuthViewModel
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class SignInFragment : Fragment() {
@@ -44,10 +45,11 @@ class SignInFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 authViewModel.uiState.observe(viewLifecycleOwner) { state ->
                     state.error?.let { error ->
-                        Snackbar.make(binding.root, error, Snackbar.LENGTH_SHORT).show()
+                        Toaster.show(binding.root, error, ToastType.ERROR)
                         authViewModel.resetState()
                     }
                     if (state.isSuccess) {
+                        Toaster.show(binding.root, "Signed in successfully!", ToastType.SUCCESS)
                         findNavController().navigateUp()
                     }
                 }

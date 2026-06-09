@@ -12,6 +12,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.ace.krishinetra_mobile.R
 import com.ace.krishinetra_mobile.databinding.FragmentProfileBinding
+import com.ace.krishinetra_mobile.utils.ToastType
+import com.ace.krishinetra_mobile.utils.Toaster
 import com.ace.krishinetra_mobile.viewmodel.ProfileViewModel
 import kotlinx.coroutines.launch
 
@@ -37,6 +39,7 @@ class ProfileFragment : Fragment() {
     private fun setupListeners() {
         binding.btnSignOut.setOnClickListener {
             viewModel.signOut()
+            Toaster.show(binding.root, "Signed out successfully", ToastType.INFO)
         }
 
         binding.btnSignIn.setOnClickListener {
@@ -59,11 +62,13 @@ class ProfileFragment : Fragment() {
                         binding.profileEmail.visibility = View.VISIBLE
                         binding.btnSignOut.visibility = View.VISIBLE
                         binding.authSection.visibility = View.GONE
+                        binding.statsAnalyses.text = "${state.analysisCount}"
                     } else {
                         binding.profileName.text = getString(R.string.profile_title)
                         binding.profileEmail.visibility = View.GONE
                         binding.btnSignOut.visibility = View.GONE
                         binding.authSection.visibility = View.VISIBLE
+                        binding.statsAnalyses.text = "0"
                     }
                 }
             }
