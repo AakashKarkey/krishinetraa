@@ -97,6 +97,7 @@ class ChatFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.isTyping.observe(viewLifecycleOwner) { typing ->
+                    binding.typingIndicator.visibility = if (typing) View.VISIBLE else View.GONE
                     binding.quickQuestionsContainer.visibility =
                         if (typing) View.GONE else View.VISIBLE
                 }

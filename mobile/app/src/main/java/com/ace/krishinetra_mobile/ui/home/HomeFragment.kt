@@ -26,14 +26,20 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnAnalyzePlant.setOnClickListener {
+        binding.cardAnalyze.setOnClickListener {
             findNavController().navigate(R.id.analyzeFragment)
         }
 
-        binding.btnLearnMore.setOnClickListener {
-            binding.nestedScrollView.post {
-                binding.nestedScrollView.smoothScrollTo(0, binding.llHowItWorks.top)
-            }
+        binding.cardChat.setOnClickListener {
+            findNavController().navigate(R.id.chatFragment)
+        }
+
+        binding.cardHistory.setOnClickListener {
+            findNavController().navigate(R.id.profileFragment)
+        }
+
+        binding.cardLearn.setOnClickListener {
+            findNavController().navigate(R.id.profileFragment)
         }
     }
 

@@ -20,6 +20,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.ace.krishinetra_mobile.R
 import com.ace.krishinetra_mobile.databinding.FragmentAnalyzeBinding
 import com.ace.krishinetra_mobile.utils.Constants
+import com.ace.krishinetra_mobile.utils.ToastType
+import com.ace.krishinetra_mobile.utils.Toaster
 import com.ace.krishinetra_mobile.viewmodel.AnalyzeUiState
 import com.ace.krishinetra_mobile.viewmodel.AnalyzeViewModel
 import com.bumptech.glide.Glide
@@ -40,7 +42,7 @@ class AnalyzeFragment : Fragment() {
         uri?.let {
             viewModel.setImage(it)
             loadPreview(it)
-        }
+        } ?: Toaster.show(binding.root, "No image selected", ToastType.INFO)
     }
 
     private val takePictureLauncher = registerForActivityResult(
@@ -58,6 +60,7 @@ class AnalyzeFragment : Fragment() {
         ActivityResultContracts.RequestPermission()
     ) { granted ->
         if (granted) openCamera()
+        else Toaster.show(binding.root, "Camera permission required", ToastType.ERROR)
     }
 
     override fun onCreateView(
@@ -137,12 +140,14 @@ class AnalyzeFragment : Fragment() {
             binding.errorCard.visibility = View.VISIBLE
             binding.errorText.text = error
             binding.resultCard.visibility = View.GONE
+            Toaster.show(binding.root, error, ToastType.ERROR)
         }
 
         state.result?.let { result ->
             binding.errorCard.visibility = View.GONE
             binding.resultCard.visibility = View.VISIBLE
             displayResult(result)
+            Toaster.show(binding.root, "Analysis complete!", ToastType.SUCCESS)
         }
     }
 
@@ -191,14 +196,14 @@ class AnalyzeFragment : Fragment() {
 
                 labelRow.addView(TextView(requireContext()).apply {
                     text = label
-                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_700))
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.text_primary))
                     textSize = 13f
                     layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                 })
 
                 labelRow.addView(TextView(requireContext()).apply {
                     text = "${DecimalFormat("#.#").format(percent)}%"
-                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_600))
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.primary))
                     textSize = 12f
                     setTypeface(null, android.graphics.Typeface.BOLD)
                 })
@@ -237,7 +242,7 @@ class AnalyzeFragment : Fragment() {
             for (tip in diseaseInfo.preventionTips) {
                 val tipView = TextView(requireContext()).apply {
                     text = "\u2022 $tip"
-                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_600))
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary))
                     textSize = 13f
                     layoutParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -254,7 +259,7 @@ class AnalyzeFragment : Fragment() {
                 for (tip in tips) {
                     binding.preventionContainer.addView(TextView(requireContext()).apply {
                         text = "\u2022 $tip"
-                        setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_600))
+                        setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary))
                         textSize = 13f
                     })
                 }

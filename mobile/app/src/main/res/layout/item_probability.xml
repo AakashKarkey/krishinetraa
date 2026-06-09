@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="8dp"
+    android:paddingBottom="12dp"
     tools:parentTag="android.widget.LinearLayout">
 
     <LinearLayout
@@ -18,8 +18,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/gray_700"
-            android:textSize="13sp"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
             tools:text="Early Blight" />
 
         <TextView
@@ -27,8 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textColor="@color/gray_600"
-            android:textSize="12sp"
+            android:textColor="@color/primary"
+            android:textSize="13sp"
             android:textStyle="bold"
             tools:text="72%" />
     </LinearLayout>
@@ -36,7 +36,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/bg_probability_bar">
 
         <View

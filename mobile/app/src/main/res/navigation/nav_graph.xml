@@ -9,40 +9,85 @@
         android:id="@+id/homeFragment"
         android:name="com.ace.krishinetra_mobile.ui.home.HomeFragment"
         android:label="@string/nav_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_analyze"
+            app:destination="@id/analyzeFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_home_to_chat"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
 
     <fragment
         android:id="@+id/analyzeFragment"
         android:name="com.ace.krishinetra_mobile.ui.analyze.AnalyzeFragment"
         android:label="@string/nav_analyze"
-        tools:layout="@layout/fragment_analyze" />
+        tools:layout="@layout/fragment_analyze">
+        <action
+            android:id="@+id/action_analyze_to_home"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
 
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.ace.krishinetra_mobile.ui.chat.ChatFragment"
         android:label="@string/nav_chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat">
+        <action
+            android:id="@+id/action_chat_to_home"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ace.krishinetra_mobile.ui.profile.ProfileFragment"
         android:label="@string/nav_profile"
         tools:layout="@layout/fragment_profile">
-
         <action
             android:id="@+id/action_profile_to_signIn"
-            app:destination="@id/signInFragment" />
-
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
         <action
             android:id="@+id/action_profile_to_signUp"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
     </fragment>
 
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.ace.krishinetra_mobile.ui.auth.SignInFragment"
         android:label="@string/sign_in_title"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signIn_to_signUp"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
 
     <fragment
         android:id="@+id/signUpFragment"
