@@ -73,4 +73,5 @@
     <string name="faq_a5">Yes, our system can identify common pests that affect potato plants. Pest detection is continuously being improved.</string>
     <string name="faq_q6">How do I implement the treatment recommendations?</string>
     <string name="faq_a6">Each recommendation comes with detailed instructions. For severe cases, we recommend consulting with a local agricultural expert.</string>
+    <string name="action_back">Go back</string>
 </resources>

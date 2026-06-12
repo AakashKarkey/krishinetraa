@@ -27,19 +27,19 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.cardAnalyze.setOnClickListener {
-            findNavController().navigate(R.id.analyzeFragment)
+            findNavController().navigate(R.id.action_home_to_analyze)
         }
 
         binding.cardChat.setOnClickListener {
-            findNavController().navigate(R.id.chatFragment)
+            findNavController().navigate(R.id.action_home_to_chat)
         }
 
         binding.cardHistory.setOnClickListener {
-            findNavController().navigate(R.id.profileFragment)
+            findNavController().navigate(R.id.action_home_to_history)
         }
 
         binding.cardLearn.setOnClickListener {
-            findNavController().navigate(R.id.profileFragment)
+            findNavController().navigate(R.id.action_home_to_learn)
         }
     }
 

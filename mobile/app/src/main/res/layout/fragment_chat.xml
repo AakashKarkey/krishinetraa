@@ -192,8 +192,10 @@
         android:background="@color/surface"
         android:orientation="horizontal"
         android:paddingHorizontal="14dp"
-        android:paddingVertical="10dp"
-        android:elevation="4dp">
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:elevation="4dp"
+        android:clipToPadding="false">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout"
@@ -202,7 +204,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             app:boxStrokeColor="@color/primary"
-            app:boxStrokeWidth="1.5dp"
+            app:boxStrokeWidth="2dp"
             app:boxStrokeWidthFocused="2dp"
             app:cornerRadius="25dp"
             app:hintEnabled="false">
@@ -211,13 +213,14 @@
                 android:id="@+id/messageInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@null"
+                android:background="@android:color/transparent"
                 android:hint="@string/chat_placeholder"
                 android:imeOptions="actionSend"
                 android:inputType="text"
                 android:maxLines="3"
                 android:paddingHorizontal="18dp"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/text_primary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton

@@ -24,7 +24,45 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_home_to_learn"
+            app:destination="@id/learnFragment" />
+        <action
+            android:id="@+id/action_home_to_history"
+            app:destination="@id/historyFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/learnFragment"
+        android:name="com.ace.krishinetra_mobile.ui.learn.LearnFragment"
+        android:label="Learn"
+        tools:layout="@layout/fragment_learn">
+        <action
+            android:id="@+id/action_learn_to_detail"
+            app:destination="@id/learnDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/learnDetailFragment"
+        android:name="com.ace.krishinetra_mobile.ui.learn.LearnDetailFragment"
+        android:label="Disease Details"
+        tools:layout="@layout/fragment_learn_detail" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.ace.krishinetra_mobile.ui.history.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/action_history_to_detail"
+            app:destination="@id/historyDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/historyDetailFragment"
+        android:name="com.ace.krishinetra_mobile.ui.history.HistoryDetailFragment"
+        android:label="Report Details"
+        tools:layout="@layout/fragment_history_detail" />
 
     <fragment
         android:id="@+id/analyzeFragment"

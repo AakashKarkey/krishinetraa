@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ace.krishinetra_mobile.data.local.AppDatabase
+import com.ace.krishinetra_mobile.data.model.AnalysisRecord
 import com.ace.krishinetra_mobile.data.model.PredictionResponse
 import com.ace.krishinetra_mobile.data.repository.AnalysisRepository
 import kotlinx.coroutines.launch
@@ -20,6 +22,7 @@ data class AnalyzeUiState(
 
 class AnalyzeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = AnalysisRepository(application)
+    private val analysisDao = AppDatabase.getDatabase(application).analysisDao()
 
     private val _uiState = MutableLiveData<AnalyzeUiState>(AnalyzeUiState())
     val uiState: LiveData<AnalyzeUiState> = _uiState
@@ -44,6 +47,7 @@ class AnalyzeViewModel(application: Application) : AndroidViewModel(application)
             val result = repository.analyzeImage(uri)
             result.fold(
                 onSuccess = { response ->
+                    saveToHistory(response)
                     _uiState.value = _uiState.value?.copy(
                         isUploading = false,
                         uploadProgress = 100,
@@ -59,6 +63,20 @@ class AnalyzeViewModel(application: Application) : AndroidViewModel(application)
                 }
             )
         }
+    }
+
+    private suspend fun saveToHistory(response: PredictionResponse) {
+        val record = AnalysisRecord(
+            diseaseName = response.diseaseName,
+            confidence = response.confidencePercent,
+            description = response.description ?: "",
+            treatment = response.treatment ?: "",
+            preventionTips = response.preventionTips?.joinToString("\n") ?: "",
+            message = response.message,
+            greenRatio = response.greenRatio,
+            imageUri = null
+        )
+        analysisDao.insertRecord(record)
     }
 
     private fun simulateProgress() {
