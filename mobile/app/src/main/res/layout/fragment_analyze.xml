@@ -264,22 +264,30 @@
                         android:background="@color/divider" />
 
                     <!-- Probabilities -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Probabilities"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
                     <LinearLayout
-                        android:id="@+id/probabilitiesContainer"
+                        android:id="@+id/probabilitiesSection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:orientation="vertical" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Probabilities"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/probabilitiesContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:orientation="vertical" />
+                    </LinearLayout>
 
                     <View
+                        android:id="@+id/dividerAfterProb"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginVertical="20dp"
@@ -305,51 +313,67 @@
                         tools:text="Early Blight is a common fungal disease..." />
 
                     <View
+                        android:id="@+id/dividerAfterDesc"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginVertical="20dp"
                         android:background="@color/divider" />
 
                     <!-- Treatment -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/treatment_label"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/treatmentText"
+                    <LinearLayout
+                        android:id="@+id/treatmentSection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="14sp"
-                        android:lineSpacingExtra="6dp"
-                        tools:text="Apply fungicides containing chlorothalonil..." />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/treatment_label"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/treatmentText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="6dp"
+                            tools:text="Apply fungicides containing chlorothalonil..." />
+                    </LinearLayout>
 
                     <View
+                        android:id="@+id/dividerAfterTreatment"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginVertical="20dp"
                         android:background="@color/divider" />
 
                     <!-- Prevention -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prevention_label"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
                     <LinearLayout
-                        android:id="@+id/preventionContainer"
+                        android:id="@+id/preventionSection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="vertical" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/prevention_label"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/preventionContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical" />
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"

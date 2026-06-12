@@ -24,6 +24,11 @@ object Constants {
                 "Your plant appears healthy with no signs of disease. Continue good care practices to maintain plant health and prevent future infections.",
                 "Continue regular care routine. Apply balanced fertilizer as needed. Maintain consistent watering schedule. Monitor for early signs of stress or pest activity.",
                 listOf("Water consistently, avoiding overwatering", "Apply mulch to retain moisture and prevent soil splash", "Fertilize appropriately for the growth stage", "Inspect plants weekly for early signs of disease", "Maintain good air circulation around plants", "Rotate crops annually")
+            ),
+            "Unrecognizable" to DiseaseData(
+                "This doesn't appear to be a plant leaf image.",
+                "Please upload a clear photo of a potato leaf for accurate analysis.",
+                listOf("Ensure the image shows a potato leaf clearly", "Avoid blurry or dark images", "Make sure the leaf is the main subject")
             )
         )
     }

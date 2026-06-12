@@ -155,6 +155,8 @@ class AnalyzeFragment : Fragment() {
         val diseaseName = result.diseaseName
         binding.diseaseName.text = diseaseName
 
+        val isUnrecognizable = diseaseName == "Unrecognizable"
+
         val confidencePercent = result.confidencePercent
         val badge = binding.confidenceBadge
         badge.text = "${confidencePercent}%"
@@ -231,6 +233,19 @@ class AnalyzeFragment : Fragment() {
                 row.addView(progressContainer)
                 binding.probabilitiesContainer.addView(row)
             }
+        }
+
+        result.message?.let { msg ->
+            binding.diseaseDescription.text = msg
+            binding.treatmentText.text = ""
+            binding.preventionContainer.removeAllViews()
+            binding.treatmentSection.visibility = View.GONE
+            binding.preventionSection.visibility = View.GONE
+            binding.probabilitiesSection.visibility = View.GONE
+            binding.dividerAfterProb.visibility = View.GONE
+            binding.dividerAfterDesc.visibility = View.GONE
+            binding.dividerAfterTreatment.visibility = View.GONE
+            return
         }
 
         val diseaseInfo = Constants.Disease.DISEASE_INFO[diseaseName]

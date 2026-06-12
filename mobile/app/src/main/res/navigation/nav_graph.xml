@@ -58,41 +58,6 @@
         android:id="@+id/profileFragment"
         android:name="com.ace.krishinetra_mobile.ui.profile.ProfileFragment"
         android:label="@string/nav_profile"
-        tools:layout="@layout/fragment_profile">
-        <action
-            android:id="@+id/action_profile_to_signIn"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_down" />
-        <action
-            android:id="@+id/action_profile_to_signUp"
-            app:destination="@id/signUpFragment"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_down" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.ace.krishinetra_mobile.ui.auth.SignInFragment"
-        android:label="@string/sign_in_title"
-        tools:layout="@layout/fragment_sign_in">
-        <action
-            android:id="@+id/action_signIn_to_signUp"
-            app:destination="@id/signUpFragment"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_down" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.ace.krishinetra_mobile.ui.auth.SignUpFragment"
-        android:label="@string/sign_up_title"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

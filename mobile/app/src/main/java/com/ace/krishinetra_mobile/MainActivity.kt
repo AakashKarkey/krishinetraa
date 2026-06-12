@@ -36,17 +36,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.signInFragment, R.id.signUpFragment -> {
-                    binding.bottomNavigation.visibility = android.view.View.GONE
-                    binding.bottomNavShadow.visibility = android.view.View.GONE
-                }
-                else -> {
-                    binding.bottomNavigation.visibility = android.view.View.VISIBLE
-                    binding.bottomNavShadow.visibility = android.view.View.VISIBLE
-                }
-            }
-        }
+        binding.bottomNavigation.visibility = android.view.View.VISIBLE
+        binding.bottomNavShadow.visibility = android.view.View.VISIBLE
     }
 }

@@ -74,6 +74,8 @@ export function AnalysisResult({ result, image }) {
   };
 
   const diseaseLabel = result?.class ?? result?.disease ?? "Unknown";
+  const isUnrecognizable = diseaseLabel === "Unrecognizable";
+  const message = result?.message ?? null;
   const libraryEntry = diseaseLibrary[diseaseLabel] ?? {};
   const description =
     result?.description ??
@@ -144,30 +146,38 @@ export function AnalysisResult({ result, image }) {
             {processingTime && <span>Time: {processingTime.toFixed(2)}s</span>}
           </div>
 
-          <Separator className="my-4" />
+          {message && isUnrecognizable ? (
+            <div className="mb-4 rounded-lg bg-yellow-50 p-4 text-yellow-800">
+              <p className="text-sm">{message}</p>
+            </div>
+          ) : (
+            <>
+              <Separator className="my-4" />
 
-          <div className="mb-4">
-            <h4 className="mb-2 font-semibold text-gray-700">Description</h4>
-            <p className="text-gray-600">{description}</p>
-          </div>
+              <div className="mb-4">
+                <h4 className="mb-2 font-semibold text-gray-700">Description</h4>
+                <p className="text-gray-600">{description}</p>
+              </div>
 
-          <div className="mb-4">
-            <h4 className="mb-2 font-semibold text-gray-700">Treatment</h4>
-            <p className="text-gray-600">{treatment}</p>
-          </div>
+              <div className="mb-4">
+                <h4 className="mb-2 font-semibold text-gray-700">Treatment</h4>
+                <p className="text-gray-600">{treatment}</p>
+              </div>
 
-          <div>
-            <h4 className="mb-2 font-semibold text-gray-700">
-              Prevention Tips
-            </h4>
-            <ul className="list-inside list-disc text-gray-600">
-              {preventionTips.length > 0 ? (
-                preventionTips.map((tip, index) => <li key={index}>{tip}</li>)
-              ) : (
-                <li>No prevention tips available.</li>
-              )}
-            </ul>
-          </div>
+              <div>
+                <h4 className="mb-2 font-semibold text-gray-700">
+                  Prevention Tips
+                </h4>
+                <ul className="list-inside list-disc text-gray-600">
+                  {preventionTips.length > 0 ? (
+                    preventionTips.map((tip, index) => <li key={index}>{tip}</li>)
+                  ) : (
+                    <li>No prevention tips available.</li>
+                  )}
+                </ul>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </Card>

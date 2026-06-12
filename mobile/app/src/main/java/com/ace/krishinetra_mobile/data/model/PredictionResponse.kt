@@ -23,7 +23,12 @@ data class PredictionResponse(
     val treatment: String?,
 
     @SerializedName("prevention_tips")
-    val preventionTips: List<String>?
+    val preventionTips: List<String>?,
+
+    val message: String?,
+
+    @SerializedName("green_ratio")
+    val greenRatio: Double?
 ) {
     val diseaseName: String
         get() = disease ?: diseaseClass ?: "Unknown"

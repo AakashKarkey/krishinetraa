@@ -1,4 +1,4 @@
-import sys, os, logging, time
+import sys, os, logging, time, math
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 _BACKEND_DIR = os.path.dirname(_SCRIPT_DIR)
@@ -94,6 +94,22 @@ def read_file_as_image(data) -> np.ndarray:
         raise HTTPException(status_code=400, detail=f"Invalid image: {e}")
 
 
+def softmax_entropy(probs: list[float]) -> float:
+    return -sum(p * math.log(p + 1e-10) for p in probs)
+
+
+GREEN_RATIO_THRESHOLD = 0.15
+
+
+def is_leaf_like(image: np.ndarray) -> tuple[bool, float]:
+    r = image[:, :, 0].astype(int)
+    g = image[:, :, 1].astype(int)
+    b = image[:, :, 2].astype(int)
+    green_mask = (g > r) & (g > b)
+    green_ratio = float(np.mean(green_mask))
+    return green_ratio >= GREEN_RATIO_THRESHOLD, green_ratio
+
+
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     start = time.time()
@@ -103,25 +119,43 @@ async def predict(file: UploadFile = File(...)):
     log.info("Received file: name=%s, size=%dKB, read_time=%.3fs", file.filename, len(contents) // 1024, elapsed_read)
 
     image = read_file_as_image(contents)
+
+    is_leaf, green_ratio = is_leaf_like(image)
+    if not is_leaf:
+        total = time.time() - start
+        log.info(
+            "Rejected (green_ratio=%.4f): not a leaf image", green_ratio,
+        )
+        return {
+            "class": "Unrecognizable",
+            "green_ratio": round(green_ratio, 4),
+            "model": _MODEL_NAME,
+            "processing_time_s": round(total, 3),
+            "message": "This doesn't appear to be a plant leaf. Please upload a clear photo of a potato leaf.",
+        }
+
     img_batch = np.expand_dims(image, 0)
 
     t0 = time.time()
     predictions = MODEL.predict(img_batch, verbose=0)
     elapsed_infer = time.time() - t0
 
-    predicted_class = CLASS_NAMES[np.argmax(predictions[0])]
     confidence = float(np.max(predictions[0]))
-    raw_probs = {CLASS_NAMES[i]: float(p) for i, p in enumerate(predictions[0])}
+    probs_list = [float(p) for p in predictions[0]]
+    raw_probs = {CLASS_NAMES[i]: probs_list[i] for i in range(len(CLASS_NAMES))}
     total = time.time() - start
 
     log.info(
-        "Prediction: class=%s, confidence=%.4f, raw=%s, model=%s, total=%.3fs (read=%.3fs, infer=%.3fs)",
-        predicted_class, confidence, raw_probs, _MODEL_NAME, total, elapsed_read, elapsed_infer,
+        "Prediction: confidence=%.4f, raw=%s, model=%s, total=%.3fs (read=%.3fs, infer=%.3fs)",
+        confidence, raw_probs, _MODEL_NAME, total, elapsed_read, elapsed_infer,
     )
+
+    predicted_class = CLASS_NAMES[np.argmax(predictions[0])]
 
     return {
         "class": predicted_class,
         "confidence": confidence,
+        "green_ratio": round(green_ratio, 4),
         "probabilities": raw_probs,
         "model": _MODEL_NAME,
         "processing_time_s": round(total, 3),
